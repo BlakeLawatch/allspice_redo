@@ -1,43 +1,40 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
+  <div class="container-fluid">
+    <section class="row justify-content-around">
+      <div v-for="recipe in recipes" :key="recipe.id" class="col-12 col-md-4 my-3">
+        <RecipeComponent :recipe="recipe" />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+
+import { computed, onMounted } from 'vue'
+import { recipesService } from '../services/RecipesService'
+import Pop from '../utils/Pop'
+import { AppState } from '../AppState.js'
+import RecipeComponent from '../components/RecipeComponent.vue'
+
 export default {
   setup() {
-    return {
-      
+    onMounted(() => {
+      getRecipes();
+    });
+    async function getRecipes() {
+      try {
+        await recipesService.getRecipes();
+      }
+      catch (error) {
+        Pop.error(error);
+      }
     }
-  }
+    return {
+      recipes: computed(() => AppState.recipes)
+    };
+  },
+  components: { RecipeComponent }
 }
 </script>
 
-<style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: clamp(500px, 50vw, 100%);
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>
