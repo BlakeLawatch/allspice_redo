@@ -11,6 +11,10 @@ class RecipesService {
         AppState.recipes = res.data.map(pojo => new Recipe(pojo))
         // logger.log('got recipes FINISH IN THE SERVICE', AppState.recipes)
     }
+
+    setActiveRecipe(recipe) {
+        AppState.activeRecipe = recipe
+    }
 }
 
 export const recipesService = new RecipesService()
