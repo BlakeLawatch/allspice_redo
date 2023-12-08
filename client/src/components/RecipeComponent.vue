@@ -1,5 +1,5 @@
 <template>
-    <div @click="setActiveRecipe()" class="col-12 selectable recipeCard p-2 text-white">
+    <div v-if="recipe" @click="setActiveRecipe()" class="col-12 selectable recipeCard p-2 text-white">
         <div class="col-4  blurFilter rounded-pill text-center p-2">
             <p class="mb-0">{{ recipe.category }}</p>
         </div>

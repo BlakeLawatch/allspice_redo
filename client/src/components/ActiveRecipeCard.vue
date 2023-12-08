@@ -1,17 +1,32 @@
 <template>
-    <div class="modal fade" id="activeRecipe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div v-if="recipe" class="modal fade" id="activeRecipe" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+
+
+
+
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <section class="row">
+                        <div class="col-12 d-flex">
+                            <div class="col-4">
+                                <img class="img-fluid" :src="recipe.img" alt="">
+                            </div>
+                            <div class="col-4 p-2">
+                                <div>
+                                    <h2>{{ recipe.title }}</h2>
+                                    <p class="border-style mb-0 fw-bold bg-success text-light fs-3 text-center">Recipe Steps
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                            </div>
+                            <div class="col-4">
+
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
@@ -33,4 +48,8 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.border-style {
+    border-radius: 10px 10px 0px 0px;
+}
+</style>
